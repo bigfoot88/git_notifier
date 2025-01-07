@@ -1,0 +1,5 @@
+[wecom]
+corpid = your_corpid_here
+secret = your_secret_here
+bot_id = your_bot_id_here
+userid = your_userid_here
