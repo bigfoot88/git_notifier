@@ -1,31 +1,33 @@
 # Git Commit Notifier
 
-一个自动将 Git 提交信息推送到企业微信的通知工具。当有新的 Git 合并操作时, 例如, git pull，会自动发送通知到指定的企业微信用户或群组。
+[中文](README_CN.md) | English
 
-## 功能特点
+A notification tool that automatically pushes Git commit messages to WeCom (Enterprise WeChat). When there are new Git merge operations, such as git pull, it automatically sends notifications to specified WeCom users or groups.
 
-- 自动监控 Git 提交和合并操作
-- 发送最近 5 次提交的详细信息
-- 支持多个项目同时使用
-- 显示提交作者、时间和内容
-- 通过企业微信应用发送消息
+## Features
 
-## 安装步骤
+- Automatically monitors Git commits and merge operations
+- Sends detailed information of the last 5 commits
+- Supports multiple projects simultaneously
+- Displays commit author, time, and content
+- Sends messages through WeCom application
 
-1. 克隆项目到指定目录：
+## Installation
+
+1. Clone the project to the specified directory:
 ```bash
 cd /opt
 git clone https://github.com/bigfoot88/git_notifier.git
 chmod +x /opt/git_notifier/git_commit_notifier.py
 ```
 
-2. 创建配置文件：
+2. Create configuration file:
 ```bash
 sudo cp config.ini.example /opt/git_notifier/config.ini
-sudo chmod 600 ~/.git_notifier/config.ini  # 设置安全的文件权限
+sudo chmod 600 ~/.git_notifier/config.ini  # Set secure file permissions
 ```
 
-3. 编辑 `/opt/git_notifier/config.ini` 文件，填入您的企业微信配置：
+3. Edit `/opt/git_notifier/config.ini` file, fill in your WeCom configuration:
 ```ini
 [wecom]
 corpid = your_corpid_here
@@ -34,7 +36,7 @@ bot_id = your_bot_id_here
 userid = your_userid_here
 ```
 
-4. 在需要通知的 Git 仓库中设置 hooks, 例如代码仓库是b8water：
+4. Set up hooks in the Git repository that needs notifications, for example, if the repository is b8water:
 ```bash
 cd /path/to/b8water
 cd .git/hooks
@@ -42,37 +44,37 @@ sudo cp /opt/git_notifier/post-merge.sample .git/hooks/post-merge
 chmod +x .git/hooks/post-merge
 ```
 
-## 配置说明
+## Configuration Details
 
-- `corpid`: 企业微信的企业 ID
-- `secret`: 企业微信应用的密钥
-- `bot_id`: 企业微信应用的 AgentId
-- `userid`: 接收消息的用户 ID（可以是 @all）
+- `corpid`: WeCom enterprise ID
+- `secret`: WeCom application secret key
+- `bot_id`: WeCom application AgentId
+- `userid`: Recipient user ID (such as raymond; can be @all)
 
-## 使用方法
+## Usage
 
-安装配置完成后，工具会自动在以下情况发送通知：
+After installation and configuration, the tool will automatically send notifications in the following cases:
 
-- 例如在 b8water 仓库中执行 `git pull` 并成功合并后
+- For example, after executing `git pull` and successfully merging in the b8water repository
 
-通知消息包含：
-- 项目名称
-- 最近 5 次提交的详细信息
-- 每次提交的作者、时间和提交信息
+Notification messages include:
+- Project name
+- Detailed information of the last 5 commits
+- Author, time, and commit message for each commit
 
-## 依赖要求
+## Requirements
 
 - Python 3.6+
-- requests 库
-- 企业微信应用配置
+- requests library
+- WeCom application configuration
 
-## 注意事项
+## Notes
 
-- 请确保 `config.ini` 文件的权限设置正确，防止敏感信息泄露
-- 建议定期检查企业微信的 API 调用频率限制
-- 如遇到问题，可查看命令行输出的错误信息
+- Ensure proper permissions are set for the `config.ini` file to prevent sensitive information leakage
+- Regularly check WeCom API call frequency limits
+- Check command line output for error messages if issues occur
 
-## 许可证
+## License
 
 MIT License
 
@@ -96,11 +98,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-
-## 作者
+## Author
 
 Raymond Ho
 
-## 贡献
+## Contributing
 
-欢迎提交 Issue 和 Pull Request！
+Issues and Pull Requests are welcome! 
