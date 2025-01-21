@@ -1,0 +1,5 @@
+#!/bin/sh
+rm /tmp/git-hook.log
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] Executing OCA post-merge hook" >> /tmp/git-hook.log
+python3 --version >> /tmp/git-hook.log
+python3 /opt/git_notifier/git_commit_notifier.py >> /tmp/git-hook.log
