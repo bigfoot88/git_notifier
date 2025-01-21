@@ -22,8 +22,7 @@ class WeComNotifier:
     def _load_config(self):
         """从配置文件加载设置"""
         config = configparser.ConfigParser()
-        # 使用用户主目录下的配置文件
-        config_path = os.path.expanduser('~/.git_notifier/config.ini')
+        config_path = os.path.expanduser('/opt/git_notifier/config.ini')
         
         if not os.path.exists(config_path):
             raise FileNotFoundError(f"配置文件不存在: {config_path}")
