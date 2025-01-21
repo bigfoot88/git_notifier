@@ -6,11 +6,15 @@ A notification tool that automatically pushes Git commit messages to WeCom (Ente
 
 ## Features
 
-- Automatically monitors Git commits and merge operations
+- Automatically monitors Git merge operations
 - Sends detailed information of the last 5 commits
 - Supports multiple projects simultaneously
 - Displays commit author, time, and content
 - Sends messages through WeCom application
+
+## Development Approach
+
+The tool is designed to monitor Git repositories for branch merges. It utilizes a `post-merge` hook to trigger notifications. When a branch is merged in the monitored Git repository, the `post-merge` hook executes a script 'git_commit_notifier.py' that sends the commit details to WeCom, ensuring that all relevant parties are informed in real-time.
 
 ## Installation
 
@@ -24,7 +28,7 @@ chmod +x /opt/git_notifier/git_commit_notifier.py
 2. Create configuration file:
 ```bash
 sudo cp config.ini.example /opt/git_notifier/config.ini
-sudo chmod 600 ~/.git_notifier/config.ini  # Set secure file permissions
+sudo chmod 600 /opt/git_notifier/config.ini  # Set secure file permissions
 ```
 
 3. Edit `/opt/git_notifier/config.ini` file, fill in your WeCom configuration:

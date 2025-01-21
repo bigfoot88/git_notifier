@@ -6,11 +6,15 @@
 
 ## 功能特点
 
-- 自动监控 Git 提交和合并操作
+- 自动监控 Git 合并操作
 - 发送最近 5 次提交的详细信息
 - 支持多个项目同时使用
 - 显示提交作者、时间和内容
 - 通过企业微信应用发送消息
+
+## 开发思路
+
+该工具旨在监控 Git 仓库的分支合并操作。它利用 `post-merge` 钩子来触发通知。当监测的 Git 仓库中有分支合并时，`post-merge` 钩子会执行脚本 'git_commit_notifier.py'，将提交详情发送到企业微信，确保所有相关人员实时获知信息。
 
 ## 安装步骤
 
@@ -24,7 +28,7 @@ chmod +x /opt/git_notifier/git_commit_notifier.py
 2. 创建配置文件：
 ```bash
 sudo cp config.ini.example /opt/git_notifier/config.ini
-sudo chmod 600 ~/.git_notifier/config.ini  # 设置安全的文件权限
+sudo chmod 600 /opt/git_notifier/config.ini  # 设置安全的文件权限
 ```
 
 3. 编辑 `/opt/git_notifier/config.ini` 文件，填入您的企业微信配置：
