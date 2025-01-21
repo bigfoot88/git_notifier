@@ -1,6 +1,6 @@
 # Git Commit Notifier
 
-一个自动将 Git 提交信息推送到企业微信的通知工具。当有新的 Git 提交或合并操作时，会自动发送通知到指定的企业微信用户或群组。
+一个自动将 Git 提交信息推送到企业微信的通知工具。当有新的 Git 合并操作时, 例如, git pull，会自动发送通知到指定的企业微信用户或群组。
 
 ## 功能特点
 
@@ -12,24 +12,20 @@
 
 ## 安装步骤
 
-1. 创建配置目录：
+1. 克隆项目到指定目录：
 ```bash
-mkdir -p ~/.git_notifier
+cd /opt
+git clone https://github.com/bigfoot88/git_notifier.git
+chmod +x /opt/git_notifier/git_commit_notifier.py
 ```
 
-2. 复制程序文件：
+2. 创建配置文件：
 ```bash
-cp git_commit_notifier.py ~/.git_notifier/
-chmod +x ~/.git_notifier/git_commit_notifier.py
+sudo cp config.ini.example /opt/git_notifier/config.ini
+sudo chmod 600 ~/.git_notifier/config.ini  # 设置安全的文件权限
 ```
 
-3. 创建并编辑配置文件：
-```bash
-cp config.ini.example ~/.git_notifier/config.ini
-chmod 600 ~/.git_notifier/config.ini  # 设置安全的文件权限
-```
-
-4. 编辑 `~/.git_notifier/config.ini` 文件，填入您的企业微信配置：
+3. 编辑 `/opt/git_notifier/config.ini` 文件，填入您的企业微信配置：
 ```ini
 [wecom]
 corpid = your_corpid_here
@@ -38,14 +34,11 @@ bot_id = your_bot_id_here
 userid = your_userid_here
 ```
 
-5. 在需要通知的 Git 仓库中设置 hooks：
+4. 在需要通知的 Git 仓库中设置 hooks, 例如代码仓库是b8water：
 ```bash
-# 提交后通知
-echo "python3 ~/.git_notifier/git_commit_notifier.py" > .git/hooks/post-commit
-chmod +x .git/hooks/post-commit
-
-# 合并后通知
-echo "python3 ~/.git_notifier/git_commit_notifier.py" > .git/hooks/post-merge
+cd /path/to/b8water
+cd .git/hooks
+sudo cp /opt/git_notifier/post-merge.sample .git/hooks/post-merge
 chmod +x .git/hooks/post-merge
 ```
 
@@ -60,8 +53,7 @@ chmod +x .git/hooks/post-merge
 
 安装配置完成后，工具会自动在以下情况发送通知：
 
-- 执行 `git commit` 后
-- 执行 `git pull` 并成功合并后
+- 例如在 b8water 仓库中执行 `git pull` 并成功合并后
 
 通知消息包含：
 - 项目名称
